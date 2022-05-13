@@ -3,40 +3,73 @@ import Form from './components/Form';
 import Card from './components/Card';
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     cardName: 'Nome da carta',
-  //     cardDescription: 'Descrição da carta',
-  //     cardAttr1: '12',
-  //     cardAttr2: '34',
-  //     cardAttr3: '56',
-  //     cardImage: 'url-to-image',
-  //     cardRare: 'raro',
-  //     cardTrunfo: true,
-  //     hasTrunfo: false,
-  //     isSaveButtonDisabled: false,
-  //   };
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
+  constructor() {
+    super();
+    this.state = {
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'Normal',
+      cardTrunfo: false,
+      hasTrunfo: false,
+      isSaveButtonDisabled: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handlesave = this.handleSave.bind(this);
+  }
 
-  // handleChange = ({ target }) => {
-  //   const { name } = target;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // };
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
 
-  // handleSave = () => {
-
-  // };
+  handleSave = () => {
+  };
 
   render() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+    } = this.state;
     return (
       <div>
-        <Form />
-        <Card />
+        <Form
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ cardTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
+          onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.handleSave }
+        />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+        />
       </div>
     );
   }
@@ -44,15 +77,3 @@ class App extends React.Component {
 
 export default App;
 
-// cardName={ this.handleChange }
-// cardDescription={ this.handleChange }
-// cardAttr1={ this.handleChange }
-// cardAttr2={ this.handleChange }
-// cardAttr3={ this.handleChange }
-// cardImage={ this.handleChange }
-// cardRare={ this.handleChange }
-// cardTrunfo={ this.handleChange }
-// hasTrunfo={ this.handleChange }
-// isSaveButtonDisabled={ this.handleChange }
-// onInputChange={ this.handleChange }
-// onSaveButtonClick={ this.handleSave }

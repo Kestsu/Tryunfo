@@ -21,6 +21,7 @@ class Form extends React.Component {
       <form>
         <p>Insira o nome da carta.</p>
         <input
+          name="cardName"
           type="text"
           data-testid="name-input"
           value={ cardName }
@@ -30,6 +31,7 @@ class Form extends React.Component {
         <p>Insira a descrição da carta.</p>
         <br />
         <textarea
+          name="cardDescription"
           data-testid="description-input"
           value={ cardDescription }
           onChange={ onInputChange }
@@ -37,6 +39,7 @@ class Form extends React.Component {
         <br />
         <p>Insira o primeiro atributo da carta.</p>
         <input
+          name="cardAttr1"
           type="number"
           data-testid="attr1-input"
           value={ cardAttr1 }
@@ -46,6 +49,7 @@ class Form extends React.Component {
         <br />
         <p>Insira o segundo atributo da carta.</p>
         <input
+          name="cardAttr2"
           type="number"
           data-testid="attr2-input"
           value={ cardAttr2 }
@@ -54,6 +58,7 @@ class Form extends React.Component {
         <br />
         <p>Insira o terceiro atributo da carta.</p>
         <input
+          name="cardAttr3"
           type="number"
           data-testid="attr3-input"
           value={ cardAttr3 }
@@ -61,6 +66,7 @@ class Form extends React.Component {
         />
         <p>Insira o caminho da imagem.</p>
         <input
+          name="cardImage"
           type="text"
           data-testid="image-input"
           value={ cardImage }
@@ -68,6 +74,7 @@ class Form extends React.Component {
         />
         <p>Selecione a raridade.</p>
         <select
+          name="cardRare"
           data-testid="rare-input"
           value={ cardRare }
           onChange={ onInputChange }
@@ -78,6 +85,7 @@ class Form extends React.Component {
         </select>
         <p>Marque caso a carta seja o Super Trunfo.</p>
         <input
+          name="cardTrunfo"
           type="checkbox"
           data-testid="trunfo-input"
           checked={ cardTrunfo }
@@ -85,6 +93,7 @@ class Form extends React.Component {
         />
         <br />
         <button
+          name="isSaveButtonDisabled"
           type="button"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
