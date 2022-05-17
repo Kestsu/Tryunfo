@@ -16,6 +16,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: false,
+      baralho: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlesave = this.handleSave.bind(this);
@@ -24,27 +25,56 @@ class App extends React.Component {
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    // if (target.disabled === isSaveButtonDisabled) {
-    //   value = target.isSaveButtonDisabled;
-    // }
     this.setState({
       [name]: value,
     });
   };
 
-  handleTrue = (event) => {
-    if (event === true) {
+  handleSave = (event) => {
+    event.preventDefault();
+    const {
+      cardTrunfo,
+      hasTrunfo,
+    } = this.state;
+    this.setState(({
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      baralho,
+    }) => ({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardTrunfo: false,
+      cardRare: 'Normal',
+      baralho:
+      [...baralho,
+        {
+          cardName,
+          cardDescription,
+          cardAttr1,
+          cardAttr2,
+          cardAttr3,
+          cardImage,
+          cardRare,
+          cardTrunfo,
+        }],
+    }
+    ));
+
+    if (cardTrunfo && !hasTrunfo) {
       this.setState({
-        isSaveButtonDisabled: true,
-      });
-    } else {
-      this.setState({
-        isSaveButtonDisabled: false,
+        cardTrunfo: false,
+        hasTrunfo: true,
       });
     }
-  }
-
-  handleSave = () => {
   };
 
   render() {
@@ -57,7 +87,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      isSaveButtonDisabled,
+      hasTrunfo,
     } = this.state;
 
     let teste = 'ativar';
@@ -95,7 +125,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ teste === 'desativar' }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.handleSave }
