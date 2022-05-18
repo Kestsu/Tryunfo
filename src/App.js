@@ -27,7 +27,7 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    }, this.fusion());
+    }, () => this.validar());
   };
 
   handleSave = (event) => {
@@ -77,20 +77,22 @@ class App extends React.Component {
     }
   };
 
-  handleEmpty = () => {
-    const { cardName, cardDescription, cardImage, cardRare } = this.state;
+  handleLetters = () => {
+    const { cardName, cardDescription, cardImage } = this.state;
+    console.log('cardName', cardName);
+    // console.log(cardDescription);
+    // console.log(cardImage);
     if (
-      cardName.length === 0
-            || cardDescription.length === 0
-            || cardImage.length === 0
-            || cardRare.length === 0
+      (cardName.length === 0)
+            || (cardDescription.length === 0)
+            || (cardImage.length === 0)
     ) {
       return true;
     }
     return false;
   }
 
-  handleLenght = () => {
+  handleNumber = () => {
     const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const attr1 = Number(cardAttr1);
     const attr2 = Number(cardAttr2);
@@ -98,22 +100,25 @@ class App extends React.Component {
     const nove = 90;
     const zero = 0;
     const max = 210;
+    // console.log(cardAttr1, cardAttr2, cardAttr3);
     if (attr1 > nove
         || attr2 > nove
         || attr3 > nove
         || attr1 < zero
         || attr2 < zero
         || attr3 < zero
-        || attr1 + attr2 + attr3 > max) {
+        || ((attr1 + attr2 + attr3) > max)) {
       return true;
     }
     return false;
   }
 
-  fusion = () => {
-    const resultadoValue = this.handleLenght();
-    const resultadoEmpty = this.handleEmpty();
-    if (resultadoValue === false && resultadoEmpty === false) {
+  validar = () => {
+    const resultadoLetras = this.handleLetters();
+    const resultadoNumeros = this.handleNumber();
+    // console.log(resultadoValue);
+    // console.log(resultadoEmpty);
+    if (resultadoLetras === false && resultadoNumeros === false) {
       return this.setState({ isSaveButtonDisabled: false });
     } return this.setState({ isSaveButtonDisabled: true });
   }
@@ -209,24 +214,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// btn = () => {
-//   if
-//   ((cardAttr1 > '90')
-//   || (cardAttr2 > '90')
-//   || (cardAttr3 > '90')
-//   || (cardAttr1 < 0)
-//   || (cardAttr2 < 0)
-//   || (cardAttr3 < 0)
-//   || (cardAttr1 + cardAttr2 + cardAttr3 > '210')
-//   || (cardName.length === 0)
-//   || (cardDescription.length === 0)
-//   || (cardImage.length === 0)
-//   || (cardRare.length === 0)
-//   ) {
-//     return this.setState({
-//       isSaveButtonDisabled: false,
-//     });
-//   }
-//   this.setState({ isSaveButtonDisabled: true });
-// }
